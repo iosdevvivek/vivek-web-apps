@@ -2,140 +2,97 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>My Travel Explorer</title>
 <style>
-:root{--bg:#f5f7fb;--card:#fff;--text:#182230;--muted:#657084;--primary:#2563eb;--primary2:#1d4ed8;--border:#e5e9f0;--green:#0f9d68;--shadow:0 8px 25px rgba(30,45,70,.08)}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text)}
-header{background:linear-gradient(135deg,#173b8f,#2563eb);color:#fff;padding:26px 6% 34px}
-.nav{display:flex;justify-content:space-between;align-items:center;max-width:1250px;margin:auto}.brand{font-size:23px;font-weight:800}.nav span{opacity:.85;margin-left:22px;font-size:14px}
-.hero{max-width:1250px;margin:34px auto 0}.hero h1{font-size:42px;margin:0 0 8px}.hero p{margin:0;opacity:.9}
-.searchbox{background:#fff;color:var(--text);border-radius:16px;padding:18px;margin-top:24px;box-shadow:var(--shadow);display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr 1fr auto;gap:10px}
-input,select,button{font:inherit}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase}.field input,.field select{border:1px solid var(--border);border-radius:9px;padding:11px;background:#fff}
-button{border:0;border-radius:9px;padding:12px 16px;font-weight:700;cursor:pointer}.primary{background:var(--primary);color:#fff}.primary:hover{background:var(--primary2)}
-main{max-width:1250px;margin:28px auto;padding:0 20px}.section{margin:28px 0}.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.section h2{margin:0;font-size:22px}.muted{color:var(--muted);font-size:14px}
-.chips{display:flex;gap:10px;flex-wrap:wrap}.chip{background:#fff;border:1px solid var(--border);padding:9px 14px;border-radius:999px;cursor:pointer}.chip.active{background:#eaf1ff;border-color:#9db9ff;color:#1749b4;font-weight:700}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 4px 16px rgba(30,45,70,.05)}.visual{height:130px;background:linear-gradient(135deg,#dbeafe,#eef2ff);display:flex;align-items:center;justify-content:center;font-size:48px}.body{padding:15px}.title{font-size:18px;font-weight:800}.meta{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin:8px 0}.price{font-weight:800;color:var(--green)}.actions{display:flex;gap:8px;margin-top:12px}.secondary{background:#eef2f7;color:#26364c}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
-.ai{background:linear-gradient(135deg,#111827,#26344d);color:#fff}.ai input{width:100%;padding:13px;border-radius:9px;border:0;margin:12px 0}.answer{background:rgba(255,255,255,.09);border-radius:10px;padding:13px;line-height:1.5;min-height:60px}
-.budget-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border)}.total{font-size:20px;font-weight:800;padding-top:12px}
-footer{text-align:center;color:var(--muted);padding:30px}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);align-items:center;justify-content:center;padding:20px}.modal-box{background:#fff;border-radius:16px;max-width:650px;width:100%;padding:22px;max-height:85vh;overflow:auto}.close{float:right;background:#eef2f7}
-@media(max-width:900px){.searchbox{grid-template-columns:1fr 1fr}.grid,.two{grid-template-columns:1fr}.hero h1{font-size:32px}}
-@media(max-width:560px){.searchbox{grid-template-columns:1fr}.nav span{display:none}}
+:root{--bg:#f4f7fb;--card:#fff;--ink:#172033;--muted:#667085;--blue:#2563eb;--line:#e4e9f1;--green:#07865a;--shadow:0 8px 28px #182b4d12}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink)}header{background:linear-gradient(135deg,#173b8f,#2563eb);color:white;padding:24px 5% 38px}.nav,.hero,main{max-width:1280px;margin:auto}.nav{display:flex;justify-content:space-between;align-items:center}.brand{font-size:23px;font-weight:800}.nav span{margin-left:20px;font-size:14px;opacity:.9}.hero{padding-top:35px}.hero h1{font-size:42px;margin:0 0 8px}.hero p{opacity:.9}.search{background:white;color:var(--ink);padding:16px;border-radius:16px;margin-top:24px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr auto;gap:10px;box-shadow:var(--shadow)}label{font-size:11px;text-transform:uppercase;color:var(--muted);font-weight:700}input,select,button{font:inherit}input,select{width:100%;padding:11px;border:1px solid var(--line);border-radius:9px;background:white}.field{display:grid;gap:6px}.btn{border:0;border-radius:9px;padding:11px 15px;font-weight:700;cursor:pointer}.primary{background:var(--blue);color:#fff}.secondary{background:#eef2f7;color:#243247}.search .primary{align-self:end;height:42px}main{padding:25px 20px}.section{margin:28px 0}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.head h2{margin:0;font-size:22px}.muted{color:var(--muted);font-size:14px}.chips{display:flex;gap:9px;flex-wrap:wrap}.chip{background:white;border:1px solid var(--line);border-radius:999px;padding:9px 13px;cursor:pointer}.chip.on{background:#eaf1ff;border-color:#9db9ff;color:#1749b4;font-weight:700}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card,.panel{background:white;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}.card{overflow:hidden}.pic{height:120px;background:linear-gradient(135deg,#dbeafe,#eef2ff);display:flex;align-items:center;justify-content:center;font-size:46px}.body,.panel{padding:16px}.title{font-size:18px;font-weight:800}.meta{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin:8px 0}.actions{display:flex;gap:8px;margin-top:12px}.price{color:var(--green);font-weight:800}.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}.rows>div{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)}.ai{background:linear-gradient(135deg,#111827,#26344d);color:#fff}.ai input{margin:12px 0}.answer{margin-top:12px;padding:13px;background:#ffffff12;border-radius:10px;line-height:1.5;min-height:54px}.status{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:999px;background:#e9f8f1;color:#08734e;font-size:12px;font-weight:700}.loading{opacity:.7}.empty{padding:25px;text-align:center;color:var(--muted);background:white;border:1px dashed #cbd5e1;border-radius:12px}.map{width:100%;height:250px;border:0;border-radius:12px;background:#eef2f7}.small{font-size:12px;color:var(--muted)}footer{text-align:center;padding:30px;color:var(--muted)}.modal{display:none;position:fixed;inset:0;background:#0007;align-items:center;justify-content:center;padding:20px;z-index:5}.modalbox{background:#fff;border-radius:16px;max-width:720px;width:100%;max-height:88vh;overflow:auto;padding:22px}.close{float:right}.notice{margin-top:12px;padding:10px 12px;background:#fff8e1;border-radius:9px;font-size:12px;color:#795b00}
+@media(max-width:950px){.search{grid-template-columns:1fr 1fr}.grid,.two{grid-template-columns:1fr}.hero h1{font-size:34px}}
+@media(max-width:600px){.search{grid-template-columns:1fr}.nav span{display:none}}
 </style>
 </head>
 <body>
 <header>
-  <div class="nav">
-    <div class="brand">My Travel Explorer</div>
-    <div><span>Discover</span><span>Weekend Ideas</span><span>My Trips</span><span>Travel AI</span></div>
-  </div>
-  <div class="hero">
-    <h1>Discover your next trip</h1>
-    <p>Find destinations, stays, packages, transport and weekend ideas around your starting point.</p>
-    <div class="searchbox">
-      <div class="field"><label>Starting from</label><input id="origin" value="Agra"></div>
-      <div class="field"><label>Travel date</label><input id="date" type="date" value="2026-10-10"></div>
-      <div class="field"><label>Distance</label><select id="distance"><option>100</option><option>200</option><option selected>300</option><option>500</option></select></div>
-      <div class="field"><label>Travellers</label><select id="travellers"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5+</option></select></div>
-      <div class="field"><label>Budget</label><select id="budget"><option>₹5,000</option><option selected>₹10,000</option><option>₹20,000</option><option>₹30,000+</option></select></div>
-      <button class="primary" onclick="findTrips()">Find Trips</button>
-    </div>
-  </div>
+<div class="nav"><div class="brand">My Travel Explorer</div><div><span>Discover</span><span>Weekend Ideas</span><span>My Trips</span><span>Travel AI</span></div></div>
+<div class="hero">
+<h1>Discover your next trip</h1><p>Live destination discovery, weather, routes and travel ideas around your starting point.</p>
+<div class="search">
+<div class="field"><label>Starting from</label><input id="origin" value="Agra" placeholder="City or place"></div>
+<div class="field"><label>Date</label><input id="date" type="date"></div>
+<div class="field"><label>Radius</label><select id="radius"><option>100</option><option>200</option><option selected>300</option><option>500</option></select></div>
+<div class="field"><label>Travellers</label><select id="travellers"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5+</option></select></div>
+<div class="field"><label>Budget</label><select id="budget"><option value="5000">₹5,000</option><option value="10000" selected>₹10,000</option><option value="20000">₹20,000</option><option value="30000">₹30,000+</option></select></div>
+<button class="btn primary" onclick="discover()">Find Trips</button>
+</div>
+</div>
 </header>
 
 <main>
-  <section class="section">
-    <div class="section-head"><div><h2>What are you looking for?</h2><div class="muted">Choose one or more travel styles</div></div></div>
-    <div class="chips" id="chips">
-      <div class="chip active">Nature</div><div class="chip">Adventure</div><div class="chip">Spiritual</div><div class="chip">Heritage</div><div class="chip">Family</div><div class="chip">Food</div><div class="chip">Luxury</div><div class="chip">Road Trip</div>
-    </div>
-  </section>
+<section class="section"><div class="head"><div><h2>Travel style</h2><div class="muted">Use these to influence discovery.</div></div><span id="status" class="status">● Ready</span></div>
+<div class="chips" id="chips"><div class="chip on">Nature</div><div class="chip">Adventure</div><div class="chip">Spiritual</div><div class="chip">Heritage</div><div class="chip">Family</div><div class="chip">Food</div><div class="chip">Luxury</div><div class="chip">Road Trip</div></div></section>
 
-  <section class="section">
-    <div class="section-head"><div><h2>Weekend ideas within <span id="km">300</span> km</h2><div class="muted" id="resultText">Sample discovery results from Agra</div></div><button class="secondary" onclick="sortByBudget()">Sort by budget</button></div>
-    <div class="grid" id="destinations"></div>
-  </section>
+<section class="section"><div class="head"><div><h2>Destinations within <span id="radiusText">300</span> km</h2><div class="muted" id="resultText">Discovering live places near Agra…</div></div><button class="btn secondary" onclick="sortPlaces()">Sort by distance</button></div><div id="destinations" class="grid"><div class="empty loading">Loading nearby destinations…</div></div></section>
 
-  <section class="section">
-    <div class="section-head"><div><h2>Packages & deals</h2><div class="muted">Demo aggregation layout — connect approved APIs/affiliate feeds for live data.</div></div></div>
-    <div class="grid" id="packages"></div>
-  </section>
+<section class="section two">
+<div class="panel"><div class="head"><div><h2>Weather</h2><div class="muted">Forecast for your selected area.</div></div></div><div id="weather" class="empty">Select a location to load forecast.</div></div>
+<div class="panel"><div class="head"><div><h2>Route planner</h2><div class="muted">Driving estimate from your origin.</div></div></div><div id="route" class="empty">Choose a destination above.</div></div>
+</section>
 
-  <section class="section two">
-    <div class="panel">
-      <h2>Travel options</h2><p class="muted">Compare common ways to reach your selected destination.</p>
-      <div id="transport"></div>
-    </div>
-    <div class="panel">
-      <h2>Trip budget</h2><p class="muted">Adjust the estimates to plan your weekend.</p>
-      <div class="budget-row"><span>Travel / fuel</span><strong>₹2,500</strong></div>
-      <div class="budget-row"><span>Stay</span><strong>₹4,000</strong></div>
-      <div class="budget-row"><span>Food</span><strong>₹2,500</strong></div>
-      <div class="budget-row"><span>Activities</span><strong>₹1,500</strong></div>
-      <div class="budget-row"><span>Miscellaneous</span><strong>₹1,000</strong></div>
-      <div class="total">Estimated total: ₹11,500</div>
-    </div>
-  </section>
+<section class="section"><div class="head"><div><h2>Packages & booking ideas</h2><div class="muted">Partner search links; live prices should be supplied by approved APIs/affiliate feeds.</div></div></div><div id="packages" class="grid"></div><div class="notice">The prototype does not scrape protected travel sites. Booking cards open partner search pages; production integration should use official APIs, affiliate feeds or permitted partner data.</div></section>
 
-  <section class="section two">
-    <div class="panel ai">
-      <h2>Ask Travel AI</h2>
-      <p>Try: “I have ₹15,000 for 2 days and want a family-friendly trip.”</p>
-      <input id="aiQuestion" placeholder="Ask for a trip idea...">
-      <button class="primary" onclick="askAI()">Create suggestion</button>
-      <div class="answer" id="aiAnswer">Your personalized recommendation will appear here.</div>
-    </div>
-    <div class="panel">
-      <h2>My trips</h2>
-      <p class="muted">Save your upcoming plans and open them later.</p>
-      <div class="budget-row"><span>10 Oct 2026</span><strong>Zaber Airport</strong></div>
-      <div class="budget-row"><span>24 Oct 2026</span><strong>ISKCON Temple</strong></div>
-      <div class="budget-row"><span>7 Nov 2026</span><strong>Dehradun</strong></div>
-      <div class="budget-row"><span>28 Nov 2026</span><strong>Jaipur</strong></div>
-      <button class="primary" style="margin-top:12px" onclick="openPlanner()">Open Trip Planner</button>
-    </div>
-  </section>
+<section class="section two">
+<div class="panel"><h2>Trip budget</h2><div class="muted">Editable planning estimate for the selected trip.</div><div class="rows" id="budgetRows"></div><div style="font-size:20px;font-weight:800;padding-top:12px" id="total">Estimated total: ₹0</div></div>
+<div class="panel ai"><h2>Ask Travel AI</h2><div>Describe your trip in natural language.</div><input id="question" placeholder="e.g. 2 days, family, ₹15,000, nature"><button class="btn primary" onclick="askAI()">Create suggestion</button><div class="answer" id="answer">I’ll use the live destination results on this page to create a practical suggestion.</div></div>
+</section>
+
+<section class="section"><div class="head"><div><h2>Things to explore</h2><div class="muted">OpenStreetMap points of interest discovered around the search location.</div></div></div><div id="pois" class="grid"><div class="empty">POIs will appear after discovery.</div></div></section>
+
+<section class="section"><div class="head"><div><h2>My trips</h2><div class="muted">Saved locally in this browser.</div></div><button class="btn secondary" onclick="clearTrips()">Clear</button></div><div id="trips" class="rows panel"></div></section>
 </main>
+<footer>My Travel Explorer • Live web-data prototype • Data sources: OpenStreetMap/Nominatim, Overpass, Open-Meteo and OSRM.</footer>
 
-<div class="modal" id="modal"><div class="modal-box"><button class="close" onclick="closeModal()">Close</button><h2 id="modalTitle"></h2><div id="modalBody"></div></div></div>
-<footer>My Travel Explorer • Prototype • Connect live APIs/affiliate feeds for real-time prices and availability.</footer>
+<div class="modal" id="modal"><div class="modalbox"><button class="btn secondary close" onclick="closeModal()">Close</button><h2 id="mtitle"></h2><div id="mbody"></div></div></div>
 
 <script>
-const data=[
- {name:"Bharatpur + Deeg",km:60,days:"1–2 Days",type:"Nature + Heritage",budget:4500,icon:"🌿",desc:"Bird sanctuary, Deeg Palace and a relaxed day trip."},
- {name:"Mathura + Vrindavan",km:65,days:"1 Day",type:"Spiritual + Food",budget:3000,icon:"🛕",desc:"Temples, local food, evening aarti and cultural experiences."},
- {name:"Ranthambore",km:250,days:"2 Days / 1 Night",type:"Wildlife + Adventure",budget:12000,icon:"🐅",desc:"Safari, nature, resort stay and a weekend escape."},
- {name:"Jaipur",km:240,days:"2 Days / 1 Night",type:"Heritage + Food",budget:10000,icon:"🏰",desc:"Forts, palaces, markets, local cuisine and heritage walks."},
- {name:"Dholpur + Chambal",km:60,days:"1 Day",type:"Nature + Adventure",budget:4000,icon:"🚤",desc:"Chambal landscape, boat experiences and lesser-known heritage."},
- {name:"Gwalior",km:120,days:"1–2 Days",type:"Heritage + Food",budget:6000,icon:"🏯",desc:"Fort, palaces, museums and famous local food."}
-];
-const packages=[
- ["Jaipur Weekend","Sample Partner","₹4,999","2D/1N • Hotel + Sightseeing","🏨"],
- ["Ranthambore Safari","Sample Partner","₹8,499","2D/1N • Hotel + Safari","🐅"],
- ["Bharatpur Escape","Sample Partner","₹3,499","1D • Local sightseeing","🌿"]
-];
-function render(list=data){
- document.getElementById("destinations").innerHTML=list.map((d,i)=>`<div class="card"><div class="visual">${d.icon}</div><div class="body"><div class="title">${d.name}</div><div class="meta"><span>📍 ${d.km} km</span><span>⏱ ${d.days}</span><span>₹${d.budget.toLocaleString()}</span></div><div class="muted">${d.type}</div><p>${d.desc}</p><div class="actions"><button class="primary" onclick="details(${i})">Explore</button><button class="secondary" onclick="saveTrip('${d.name}')">Save</button></div></div></div>`).join("");
+const API={geo:"https://nominatim.openstreetmap.org/search",overpass:"https://overpass-api.de/api/interpreter",weather:"https://api.open-meteo.com/v1/forecast",route:"https://router.project-osrm.org/route/v1/driving"};
+let state={origin:null,places:[],selected:null,pois:[]};
+const money=n=>new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0}).format(n);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function setStatus(t,ok=true){const e=document.getElementById("status");e.textContent=(ok?"● ":"○ ")+t;e.style.background=ok?"#e9f8f1":"#fff3f3";e.style.color=ok?"#08734e":"#a12626"}
+async function json(url,opts={}){const r=await fetch(url,opts);if(!r.ok)throw Error("Request failed: "+r.status);return r.json()}
+async function geocode(q){const a=await json(API.geo+"?format=jsonv2&limit=1&q="+encodeURIComponent(q));if(!a[0])throw Error("Location not found");return {lat:+a[0].lat,lon:+a[0].lon,name:a[0].display_name}}
+function hav(lat1,lon1,lat2,lon2){const R=6371,d1=(lat2-lat1)*Math.PI/180,d2=(lon2-lon1)*Math.PI/180;const a=Math.sin(d1/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(d2/2)**2;return 2*R*Math.asin(Math.sqrt(a))}
+async function discover(){
+setStatus("Searching…");document.getElementById("destinations").innerHTML='<div class="empty loading">Finding places…</div>';
+try{
+const origin=await geocode(document.getElementById("origin").value.trim());state.origin=origin;
+const radius=+document.getElementById("radius").value;document.getElementById("radiusText").textContent=radius;
+document.getElementById("resultText").textContent="Live discovery around "+origin.name.split(",").slice(0,2).join(",");
+const q='[out:json][timeout:25];(node["tourism"](around:'+radius*1000+','+origin.lat+','+origin.lon+');way["tourism"](around:'+radius*1000+','+origin.lat+','+origin.lon+');relation["tourism"](around:'+radius*1000+','+origin.lat+','+origin.lon+'););out center tags;';
+const raw=await json(API.overpass+"?data="+encodeURIComponent(q));
+const seen=new Set(),places=[];
+for(const x of raw.elements){const t=x.tags||{},name=t.name||t["name:en"];if(!name||seen.has(name.toLowerCase()))continue;seen.add(name.toLowerCase());const lat=x.lat??x.center?.lat,lon=x.lon??x.center?.lon;if(lat==null)continue;const km=hav(origin.lat,origin.lon,lat,lon);if(km<=radius)places.push({name,lat,lon,km,type:t.tourism||"place",website:t.website||t.contact?.website||"",desc:t.description||"",tags:t})}
+state.places=places.sort((a,b)=>a.km-b.km).slice(0,24);renderPlaces();renderPackages();loadWeather();loadPOIs();setStatus(state.places.length+" places found");if(state.places[0])selectPlace(0);
+}catch(e){setStatus("Search failed",false);document.getElementById("destinations").innerHTML='<div class="empty">Could not load live places. Try another city or wait a moment and retry.<br><br>'+esc(e.message)+'</div>'}
 }
-function renderPackages(){
- document.getElementById("packages").innerHTML=packages.map(p=>`<div class="card"><div class="visual">${p[4]}</div><div class="body"><div class="title">${p[0]}</div><div class="meta"><span>${p[1]}</span><span>${p[3]}</span></div><div class="price">${p[2]}</div><div class="actions"><button class="primary" onclick="alert('In the production version this will open the partner offer.')">View deal</button></div></div></div>`).join("");
+function icon(type){return ({museum:"🏛️",attraction:"📍",viewpoint:"🌄",theme_park:"🎢",zoo:"🦁",gallery:"🖼️",hotel:"🏨",camp_site:"🏕️",information:"ℹ️"}[type]||"📍")}
+function renderPlaces(){
+const el=document.getElementById("destinations");if(!state.places.length){el.innerHTML='<div class="empty">No tourism places found in this radius.</div>';return}
+el.innerHTML=state.places.map((p,i)=>'<div class="card"><div class="pic">'+icon(p.type)+'</div><div class="body"><div class="title">'+esc(p.name)+'</div><div class="meta"><span>📍 '+p.km.toFixed(1)+' km</span><span>'+esc(p.type)+'</span></div><div class="muted">'+esc(p.desc||"Live place discovered from OpenStreetMap.")+'</div><div class="actions"><button class="btn primary" onclick="selectPlace('+i+')">Plan</button><button class="btn secondary" onclick="saveTrip('+i+')">Save</button></div></div></div>').join("")
 }
-function findTrips(){
- const km=Number(document.getElementById("distance").value), origin=document.getElementById("origin").value||"your location";
- document.getElementById("km").textContent=km;document.getElementById("resultText").textContent=`Discovery results around ${origin}`;
- render(data.filter(x=>x.km<=km));
- document.getElementById("transport").innerHTML=`<div class="budget-row"><span>🚗 Car / Cab</span><strong>Flexible</strong></div><div class="budget-row"><span>🚆 Train</span><strong>Check routes</strong></div><div class="budget-row"><span>🚌 Bus</span><strong>Check operators</strong></div><div class="budget-row"><span>🚕 Local transport</span><strong>Plan after arrival</strong></div>`;
-}
-function sortByBudget(){render([...data].sort((a,b)=>a.budget-b.budget))}
-function details(i){const d=data[i];document.getElementById("modalTitle").textContent=d.name;document.getElementById("modalBody").innerHTML=`<p><b>Distance:</b> ${d.km} km</p><p><b>Suggested duration:</b> ${d.days}</p><p><b>Approx. budget:</b> ₹${d.budget.toLocaleString()}</p><p><b>Explore:</b> sightseeing, food, local experiences and nearby attractions.</p><p><b>Production version:</b> live hotel/package/transport links, maps, reviews, weather and a generated day-by-day itinerary.</p>`;document.getElementById("modal").style.display="flex"}
+function sortPlaces(){state.places.sort((a,b)=>a.km-b.km);renderPlaces()}
+async function selectPlace(i){state.selected=state.places[i];if(!state.selected)return;renderPackages();document.getElementById("route").innerHTML='<div class="loading">Calculating driving route…</div>';try{const p=state.selected,o=state.origin;const d=await json(API.route+'/'+o.lon+','+o.lat+';'+p.lon+','+p.lat+'?overview=false');const x=d.routes?.[0];document.getElementById("route").innerHTML=x?'<div class="rows"><div><span>Distance</span><strong>'+ (x.distance/1000).toFixed(0)+' km</strong></div><div><span>Drive time</span><strong>'+Math.round(x.duration/3600)+' hr '+Math.round((x.duration%3600)/60)+' min</strong></div></div>':'Route unavailable';}catch(e){document.getElementById("route").innerHTML="Route service unavailable."}}
+async function loadWeather(){const o=state.origin;try{const d=await json(API.weather+'?latitude='+o.lat+'&longitude='+o.lon+'&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto&forecast_days=5');document.getElementById("weather").innerHTML='<div class="rows">'+d.daily.time.map((day,i)=>'<div><span>'+new Date(day).toLocaleDateString(undefined,{weekday:"short",day:"numeric",month:"short"})+'</span><strong>'+Math.round(d.daily.temperature_2m_min[i])+'–'+Math.round(d.daily.temperature_2m_max[i])+'°C • '+(d.daily.precipitation_probability_max?.[i]??0)+'% rain</strong></div>').join("")+'</div>'}catch(e){document.getElementById("weather").textContent="Weather unavailable."}}
+async function loadPOIs(){const o=state.origin,r=+document.getElementById("radius").value;const q='[out:json][timeout:25];(node["amenity"~"restaurant|cafe"](around:'+Math.min(r,50)*1000+','+o.lat+','+o.lon+');node["tourism"~"attraction|museum|viewpoint"](around:'+Math.min(r,50)*1000+','+o.lat+','+o.lon+'););out tags;';try{const d=await json(API.overpass+"?data="+encodeURIComponent(q));state.pois=d.elements.filter(x=>x.tags?.name).slice(0,12);document.getElementById("pois").innerHTML=state.pois.map(x=>'<div class="card"><div class="body"><div class="title">'+icon(x.tags.tourism||"")+" "+esc(x.tags.name)+'</div><div class="meta">'+esc(x.tags.tourism||x.tags.amenity||"place")+'</div><div class="muted">'+esc(x.tags.cuisine||"Local place")+'</div></div></div>').join("")||'<div class="empty">No nearby POIs found.</div>'}catch(e){document.getElementById("pois").innerHTML='<div class="empty">POI search unavailable.</div>'}}
+function renderPackages(){const p=state.selected?.name||"weekend trip";const q=encodeURIComponent(p);const cards=[["Package ideas","Search curated tours and packages","https://www.google.com/search?q="+encodeURIComponent(p+" weekend tour package India"),"🧳"],["Hotels","Compare accommodation options","https://www.google.com/search?q="+encodeURIComponent(p+" hotels booking"),"🏨"],["Activities","Find experiences and things to do","https://www.google.com/search?q="+encodeURIComponent(p+" things to do activities"),"🎯"]];document.getElementById("packages").innerHTML=cards.map(c=>'<div class="card"><div class="pic">'+c[3]+'</div><div class="body"><div class="title">'+c[0]+'</div><p class="muted">'+c[1]+'</p><a class="btn primary" href="'+c[2]+'" target="_blank" rel="noopener">Explore options</a></div></div>').join("")}
+function saveTrip(i){const p=state.places[i];const a=JSON.parse(localStorage.getItem("travelTrips")||"[]");if(!a.some(x=>x.name===p.name))a.push({name:p.name,km:p.km,date:document.getElementById("date").value||""});localStorage.setItem("travelTrips",JSON.stringify(a));renderTrips()}
+function renderTrips(){const a=JSON.parse(localStorage.getItem("travelTrips")||"[]"),e=document.getElementById("trips");e.innerHTML=a.length?a.map((x,i)=>'<div><span>📍 '+esc(x.name)+' <small>('+x.km.toFixed(0)+' km)</small></span><strong>'+esc(x.date||"Flexible")+'</strong></div>').join(""):'<div>No saved trips yet.</div>'}
+function clearTrips(){localStorage.removeItem("travelTrips");renderTrips()}
+function updateBudget(){const b=+document.getElementById("budget").value,t=+document.getElementById("travellers").value||2;const travel=Math.max(1200,Math.round((state.selected?.km||150)*2.5)),stay=Math.round(b*.38),food=Math.round(b*.20),activities=Math.round(b*.12),misc=Math.round(b*.08),total=travel+stay+food+activities+misc;document.getElementById("budgetRows").innerHTML=[["Travel / fuel",travel],["Stay",stay],["Food",food],["Activities",activities],["Miscellaneous",misc]].map(x=>'<div><span>'+x[0]+'</span><strong>'+money(x[1])+'</strong></div>').join("");document.getElementById("total").textContent="Estimated total: "+money(total)+" • "+t+" traveller(s)"}
+function askAI(){const q=document.getElementById("question").value.toLowerCase(),p=state.places.slice(0,5);let a=p.length?"I found "+p.length+" nearby options. For your request, compare "+p.slice(0,3).map(x=>x.name).join(", ")+" based on distance, weather and your budget.":"Run Find Trips first so I can use live destination data.";if(q.includes("family"))a+=" For a family trip, prioritize shorter driving time, accommodation and child-friendly attractions.";if(q.includes("nature"))a+=" For nature, look for viewpoints, parks, wildlife and low-density stays.";document.getElementById("answer").textContent=a}
+function openDetails(p){document.getElementById("mtitle").textContent=p.name;document.getElementById("mbody").innerHTML='<p><b>Distance:</b> '+p.km.toFixed(1)+' km</p><p><b>Category:</b> '+esc(p.type)+'</p><p>'+esc(p.desc||"Live destination data from OpenStreetMap.")+'</p>'+(p.website?'<p><a href="'+esc(p.website)+'" target="_blank" rel="noopener">Official / source website</a></p>':"");document.getElementById("modal").style.display="flex"}
 function closeModal(){document.getElementById("modal").style.display="none"}
-function saveTrip(name){alert(name+" saved to My Trips in this prototype.")}
-function askAI(){const q=document.getElementById("aiQuestion").value.toLowerCase();let a=q.includes("family")?"Try Bharatpur + Deeg for a relaxed family weekend, or Jaipur for a richer 2-day heritage trip.":"For a 2-day weekend, compare Jaipur, Ranthambore and Bharatpur based on budget, travel time and interests. I can generate a detailed itinerary once live travel data is connected.";document.getElementById("aiAnswer").textContent=a}
-function openPlanner(){document.getElementById("modalTitle").textContent="My Trip Planner";document.getElementById("modalBody").innerHTML="<p>Your saved trips can become full itineraries here.</p><ul><li>Travel tickets</li><li>Hotel</li><li>Places to explore</li><li>Restaurant ideas</li><li>Budget</li><li>Packing checklist</li><li>Bookings and links</li></ul>";document.getElementById("modal").style.display="flex"}
-document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>c.classList.toggle("active"));
-render();renderPackages();
+document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>c.classList.toggle("on"));document.getElementById("budget").onchange=updateBudget;document.getElementById("travellers").onchange=updateBudget;renderTrips();updateBudget();discover();
 </script>
 </body>
 </html>
