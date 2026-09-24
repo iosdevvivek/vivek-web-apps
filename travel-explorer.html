@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Travel Explorer</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#182230;--muted:#657084;--primary:#2563eb;--primary2:#1d4ed8;--border:#e5e9f0;--green:#0f9d68;--shadow:0 8px 25px rgba(30,45,70,.08)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text)}
+header{background:linear-gradient(135deg,#173b8f,#2563eb);color:#fff;padding:26px 6% 34px}
+.nav{display:flex;justify-content:space-between;align-items:center;max-width:1250px;margin:auto}.brand{font-size:23px;font-weight:800}.nav span{opacity:.85;margin-left:22px;font-size:14px}
+.hero{max-width:1250px;margin:34px auto 0}.hero h1{font-size:42px;margin:0 0 8px}.hero p{margin:0;opacity:.9}
+.searchbox{background:#fff;color:var(--text);border-radius:16px;padding:18px;margin-top:24px;box-shadow:var(--shadow);display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr 1fr auto;gap:10px}
+input,select,button{font:inherit}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase}.field input,.field select{border:1px solid var(--border);border-radius:9px;padding:11px;background:#fff}
+button{border:0;border-radius:9px;padding:12px 16px;font-weight:700;cursor:pointer}.primary{background:var(--primary);color:#fff}.primary:hover{background:var(--primary2)}
+main{max-width:1250px;margin:28px auto;padding:0 20px}.section{margin:28px 0}.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.section h2{margin:0;font-size:22px}.muted{color:var(--muted);font-size:14px}
+.chips{display:flex;gap:10px;flex-wrap:wrap}.chip{background:#fff;border:1px solid var(--border);padding:9px 14px;border-radius:999px;cursor:pointer}.chip.active{background:#eaf1ff;border-color:#9db9ff;color:#1749b4;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 4px 16px rgba(30,45,70,.05)}.visual{height:130px;background:linear-gradient(135deg,#dbeafe,#eef2ff);display:flex;align-items:center;justify-content:center;font-size:48px}.body{padding:15px}.title{font-size:18px;font-weight:800}.meta{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin:8px 0}.price{font-weight:800;color:var(--green)}.actions{display:flex;gap:8px;margin-top:12px}.secondary{background:#eef2f7;color:#26364c}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+.ai{background:linear-gradient(135deg,#111827,#26344d);color:#fff}.ai input{width:100%;padding:13px;border-radius:9px;border:0;margin:12px 0}.answer{background:rgba(255,255,255,.09);border-radius:10px;padding:13px;line-height:1.5;min-height:60px}
+.budget-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border)}.total{font-size:20px;font-weight:800;padding-top:12px}
+footer{text-align:center;color:var(--muted);padding:30px}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);align-items:center;justify-content:center;padding:20px}.modal-box{background:#fff;border-radius:16px;max-width:650px;width:100%;padding:22px;max-height:85vh;overflow:auto}.close{float:right;background:#eef2f7}
+@media(max-width:900px){.searchbox{grid-template-columns:1fr 1fr}.grid,.two{grid-template-columns:1fr}.hero h1{font-size:32px}}
+@media(max-width:560px){.searchbox{grid-template-columns:1fr}.nav span{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <div class="brand">My Travel Explorer</div>
+    <div><span>Discover</span><span>Weekend Ideas</span><span>My Trips</span><span>Travel AI</span></div>
+  </div>
+  <div class="hero">
+    <h1>Discover your next trip</h1>
+    <p>Find destinations, stays, packages, transport and weekend ideas around your starting point.</p>
+    <div class="searchbox">
+      <div class="field"><label>Starting from</label><input id="origin" value="Agra"></div>
+      <div class="field"><label>Travel date</label><input id="date" type="date" value="2026-10-10"></div>
+      <div class="field"><label>Distance</label><select id="distance"><option>100</option><option>200</option><option selected>300</option><option>500</option></select></div>
+      <div class="field"><label>Travellers</label><select id="travellers"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5+</option></select></div>
+      <div class="field"><label>Budget</label><select id="budget"><option>₹5,000</option><option selected>₹10,000</option><option>₹20,000</option><option>₹30,000+</option></select></div>
+      <button class="primary" onclick="findTrips()">Find Trips</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="section">
+    <div class="section-head"><div><h2>What are you looking for?</h2><div class="muted">Choose one or more travel styles</div></div></div>
+    <div class="chips" id="chips">
+      <div class="chip active">Nature</div><div class="chip">Adventure</div><div class="chip">Spiritual</div><div class="chip">Heritage</div><div class="chip">Family</div><div class="chip">Food</div><div class="chip">Luxury</div><div class="chip">Road Trip</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><div><h2>Weekend ideas within <span id="km">300</span> km</h2><div class="muted" id="resultText">Sample discovery results from Agra</div></div><button class="secondary" onclick="sortByBudget()">Sort by budget</button></div>
+    <div class="grid" id="destinations"></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><div><h2>Packages & deals</h2><div class="muted">Demo aggregation layout — connect approved APIs/affiliate feeds for live data.</div></div></div>
+    <div class="grid" id="packages"></div>
+  </section>
+
+  <section class="section two">
+    <div class="panel">
+      <h2>Travel options</h2><p class="muted">Compare common ways to reach your selected destination.</p>
+      <div id="transport"></div>
+    </div>
+    <div class="panel">
+      <h2>Trip budget</h2><p class="muted">Adjust the estimates to plan your weekend.</p>
+      <div class="budget-row"><span>Travel / fuel</span><strong>₹2,500</strong></div>
+      <div class="budget-row"><span>Stay</span><strong>₹4,000</strong></div>
+      <div class="budget-row"><span>Food</span><strong>₹2,500</strong></div>
+      <div class="budget-row"><span>Activities</span><strong>₹1,500</strong></div>
+      <div class="budget-row"><span>Miscellaneous</span><strong>₹1,000</strong></div>
+      <div class="total">Estimated total: ₹11,500</div>
+    </div>
+  </section>
+
+  <section class="section two">
+    <div class="panel ai">
+      <h2>Ask Travel AI</h2>
+      <p>Try: “I have ₹15,000 for 2 days and want a family-friendly trip.”</p>
+      <input id="aiQuestion" placeholder="Ask for a trip idea...">
+      <button class="primary" onclick="askAI()">Create suggestion</button>
+      <div class="answer" id="aiAnswer">Your personalized recommendation will appear here.</div>
+    </div>
+    <div class="panel">
+      <h2>My trips</h2>
+      <p class="muted">Save your upcoming plans and open them later.</p>
+      <div class="budget-row"><span>10 Oct 2026</span><strong>Zaber Airport</strong></div>
+      <div class="budget-row"><span>24 Oct 2026</span><strong>ISKCON Temple</strong></div>
+      <div class="budget-row"><span>7 Nov 2026</span><strong>Dehradun</strong></div>
+      <div class="budget-row"><span>28 Nov 2026</span><strong>Jaipur</strong></div>
+      <button class="primary" style="margin-top:12px" onclick="openPlanner()">Open Trip Planner</button>
+    </div>
+  </section>
+</main>
+
+<div class="modal" id="modal"><div class="modal-box"><button class="close" onclick="closeModal()">Close</button><h2 id="modalTitle"></h2><div id="modalBody"></div></div></div>
+<footer>My Travel Explorer • Prototype • Connect live APIs/affiliate feeds for real-time prices and availability.</footer>
+
+<script>
+const data=[
+ {name:"Bharatpur + Deeg",km:60,days:"1–2 Days",type:"Nature + Heritage",budget:4500,icon:"🌿",desc:"Bird sanctuary, Deeg Palace and a relaxed day trip."},
+ {name:"Mathura + Vrindavan",km:65,days:"1 Day",type:"Spiritual + Food",budget:3000,icon:"🛕",desc:"Temples, local food, evening aarti and cultural experiences."},
+ {name:"Ranthambore",km:250,days:"2 Days / 1 Night",type:"Wildlife + Adventure",budget:12000,icon:"🐅",desc:"Safari, nature, resort stay and a weekend escape."},
+ {name:"Jaipur",km:240,days:"2 Days / 1 Night",type:"Heritage + Food",budget:10000,icon:"🏰",desc:"Forts, palaces, markets, local cuisine and heritage walks."},
+ {name:"Dholpur + Chambal",km:60,days:"1 Day",type:"Nature + Adventure",budget:4000,icon:"🚤",desc:"Chambal landscape, boat experiences and lesser-known heritage."},
+ {name:"Gwalior",km:120,days:"1–2 Days",type:"Heritage + Food",budget:6000,icon:"🏯",desc:"Fort, palaces, museums and famous local food."}
+];
+const packages=[
+ ["Jaipur Weekend","Sample Partner","₹4,999","2D/1N • Hotel + Sightseeing","🏨"],
+ ["Ranthambore Safari","Sample Partner","₹8,499","2D/1N • Hotel + Safari","🐅"],
+ ["Bharatpur Escape","Sample Partner","₹3,499","1D • Local sightseeing","🌿"]
+];
+function render(list=data){
+ document.getElementById("destinations").innerHTML=list.map((d,i)=>`<div class="card"><div class="visual">${d.icon}</div><div class="body"><div class="title">${d.name}</div><div class="meta"><span>📍 ${d.km} km</span><span>⏱ ${d.days}</span><span>₹${d.budget.toLocaleString()}</span></div><div class="muted">${d.type}</div><p>${d.desc}</p><div class="actions"><button class="primary" onclick="details(${i})">Explore</button><button class="secondary" onclick="saveTrip('${d.name}')">Save</button></div></div></div>`).join("");
+}
+function renderPackages(){
+ document.getElementById("packages").innerHTML=packages.map(p=>`<div class="card"><div class="visual">${p[4]}</div><div class="body"><div class="title">${p[0]}</div><div class="meta"><span>${p[1]}</span><span>${p[3]}</span></div><div class="price">${p[2]}</div><div class="actions"><button class="primary" onclick="alert('In the production version this will open the partner offer.')">View deal</button></div></div></div>`).join("");
+}
+function findTrips(){
+ const km=Number(document.getElementById("distance").value), origin=document.getElementById("origin").value||"your location";
+ document.getElementById("km").textContent=km;document.getElementById("resultText").textContent=`Discovery results around ${origin}`;
+ render(data.filter(x=>x.km<=km));
+ document.getElementById("transport").innerHTML=`<div class="budget-row"><span>🚗 Car / Cab</span><strong>Flexible</strong></div><div class="budget-row"><span>🚆 Train</span><strong>Check routes</strong></div><div class="budget-row"><span>🚌 Bus</span><strong>Check operators</strong></div><div class="budget-row"><span>🚕 Local transport</span><strong>Plan after arrival</strong></div>`;
+}
+function sortByBudget(){render([...data].sort((a,b)=>a.budget-b.budget))}
+function details(i){const d=data[i];document.getElementById("modalTitle").textContent=d.name;document.getElementById("modalBody").innerHTML=`<p><b>Distance:</b> ${d.km} km</p><p><b>Suggested duration:</b> ${d.days}</p><p><b>Approx. budget:</b> ₹${d.budget.toLocaleString()}</p><p><b>Explore:</b> sightseeing, food, local experiences and nearby attractions.</p><p><b>Production version:</b> live hotel/package/transport links, maps, reviews, weather and a generated day-by-day itinerary.</p>`;document.getElementById("modal").style.display="flex"}
+function closeModal(){document.getElementById("modal").style.display="none"}
+function saveTrip(name){alert(name+" saved to My Trips in this prototype.")}
+function askAI(){const q=document.getElementById("aiQuestion").value.toLowerCase();let a=q.includes("family")?"Try Bharatpur + Deeg for a relaxed family weekend, or Jaipur for a richer 2-day heritage trip.":"For a 2-day weekend, compare Jaipur, Ranthambore and Bharatpur based on budget, travel time and interests. I can generate a detailed itinerary once live travel data is connected.";document.getElementById("aiAnswer").textContent=a}
+function openPlanner(){document.getElementById("modalTitle").textContent="My Trip Planner";document.getElementById("modalBody").innerHTML="<p>Your saved trips can become full itineraries here.</p><ul><li>Travel tickets</li><li>Hotel</li><li>Places to explore</li><li>Restaurant ideas</li><li>Budget</li><li>Packing checklist</li><li>Bookings and links</li></ul>";document.getElementById("modal").style.display="flex"}
+document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>c.classList.toggle("active"));
+render();renderPackages();
+</script>
+</body>
+</html>
